@@ -1,10 +1,19 @@
-/** Class that determines whether or not a year is a leap year.
- *  @author YOUR NAME HERE
- */
 public class LeapYear {
 
-    /** Calls isLeapYear to print correct statement.
-     *  @param  year to be analyzed
+    /**
+     * Determines if the given year is a leap year.
+     *
+     * @param year the year to be analyzed
+     * @return true if the year is a leap year, false otherwise
+     */
+    public static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    /**
+     * Prints whether the given year is a leap year.
+     *
+     * @param year the year to be analyzed
      */
     private static void checkLeapYear(int year) {
         if (isLeapYear(year)) {
@@ -14,20 +23,24 @@ public class LeapYear {
         }
     }
 
-    /** Must be provided an integer as a command line argument ARGS. */
+    /**
+     * Main method to run the program. Expects year as command line arguments.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Please enter command line arguments.");
-            System.out.println("e.g. java Year 2000");
-        }
-        for (int i = 0; i < args.length; i++) {
-            try {
-                int year = Integer.parseInt(args[i]);
-                checkLeapYear(year);
-            } catch (NumberFormatException e) {
-                System.out.printf("%s is not a valid number.\n", args[i]);
+            System.out.println("e.g. java LeapYear 2000");
+        } else {
+            for (int i = 0; i < args.length; i++) {
+                try {
+                    int year = Integer.parseInt(args[i]);
+                    checkLeapYear(year);
+                } catch (NumberFormatException e) {
+                    System.out.printf("%s is not a valid number.\n", args[i]);
+                }
             }
         }
     }
 }
-
